@@ -58,9 +58,26 @@ const fibRec = (n) => {
 }
 
 // Return the index of target in arr, or -1 if not found using recursion 
-const binarySearch = (arr, target, start = 0, end = arr.length - 1) => { };
+const binarySearch = (arr, target, start = 0, end = arr.length - 1) => {
+    // if target is not in array we need base case
+    if (start > end) return -1
+    // find the middle index
+    let middleIndex = Math.floor((start + end) / 2)
+    // if middle index is not the target 
+    if (arr[middleIndex] === target) return middleIndex
+    // check if the middle index is less than the target 
+    if (arr[middleIndex] > target) {
+        // call the function recursively on the left side of array 
+        return binarySearch(arr, target, start, middleIndex - 1)
+    } else {
+        // call the function recursively on the middle index and the last index 
+        return binarySearch(arr, target, middleIndex + 1, end)
+    }
+};
 
 module.exports = { sum, reverse, fibRec, fibIter, binarySearch };
+
+
 
 
 
